@@ -1,0 +1,40 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#game-header{
+    background-color: rgb(211, 88, 88) !important;
+    text-align: center;
+}
+#game-container{
+    padding: 3vw;
+    max-width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+.team-controls{
+    display: flex;
+}
+nav a{
+    color: white;
+    transition: 0.8s color;
+}
+
+nav a:hover{
+    color: rgba(0, 2, 143, 0.8);
+}
+.score-table{
+    box-shadow: 3px;
+}
+#answer-form{
+    display: flex;
+}
+.hidden progress{
+    font-size: 30px;
+    color: chartreuse;
+}
+img{
+    position: relative;
+}
+.results{
+    background-color: blueviolet;
+}
