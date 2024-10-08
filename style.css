@@ -1,0 +1,85 @@
+/* Font Family */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Header Styling */
+#game-header {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Game Container Styling */
+#game-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    min-height: 70vh;
+    background-color: #f8f9fa; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Score Table Styling */
+.score-table {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Form Alignment for Answer Input */
+#answer-form {
+    display: flex;
+    align-items: center;
+}
+
+/* Countdown Timer Styling */
+#countdown-timer {
+    font-size: 2rem;
+    color: #dc3545; 
+}
+
+/* Button Styling with Hover Effect */
+#start-game-btn, #submit-answer, #pass-btn, #play-btn {
+    border-radius: 5px;
+}
+
+#start-game-btn:hover, #submit-answer:hover, #pass-btn:hover, #play-btn:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.team-controls {
+    display: flex;
+}
+/* Buzzer Image Alignment */
+.buzzer-img {
+    max-width: 100px;
+    position: relative;
+}
+
+/* Results Section Styling */
+#results {
+    background-color: #396a9b; 
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar Link Hover Effect */
+.nav-link:hover {
+    color: #007bff;
+}
+
+h1, h2, th {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    #game-container {
+        padding: 10px;
+    }
+
+    .team-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
