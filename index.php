@@ -18,9 +18,9 @@ require_once 'config_file.php';
     <header id="game-header" class="bg-primary text-center py-3">
         <h1>Family Feud Game</h1>
     </header>
-    <button><a href="logout.php">Log out</a></button>
+    
     <!-- Navigation Section -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light text-center">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
@@ -62,7 +62,6 @@ require_once 'config_file.php';
             <h3 id="current-player">Current Player: </h3>
         </div>
 
-
         <div id="question-container">
             <h2 id="question">Question will appear here</h2>
         </div>
@@ -93,13 +92,10 @@ require_once 'config_file.php';
             <button id="play-btn" class="btn btn-primary">Play</button>
         </div>
 
-       
-
         <div id="countdown-timer" class="text-danger text-center" hidden>
             <h3>Get Ready!</h3>
             <span id="timer">3</span>
         </div>
-
 
         <div id="leaderboard">
             <h3>Leaderboard</h3>
@@ -109,8 +105,7 @@ require_once 'config_file.php';
         </div>
 
         <progress id="answer-progress" value="0" max="100" class="w-100 my-4"></progress>
-        <button id="reset">Reset Game</button>
-        
+        <button id="reset" onclick="resetGame()">Reset Game</button>
 
         <audio controls id="game-soundtrack" class="mt-4">
             <source src="assets/audio/game-music.mp3" type="audio/mpeg">
@@ -128,6 +123,6 @@ require_once 'config_file.php';
     <!-- Link to Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Link to JavaScript -->
-    <script src="game.js"></script>
+    <script src="newgame.js"></script>
 </body>
 </html>
