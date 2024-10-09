@@ -1,6 +1,6 @@
 # HTML
 
-- HTML stucture was used in the web system's interface and served as the foundation to organize content logically. It made it easier for users to navigate through the platform. Semantic HTML elements helped in conveying the purpose of different parts of the interface, improving accessibility for screen readers and serach engines. One enhancement I could think of is by adding more semantic elements such as article for displaying individual scores on the leaderboard.
+- HTML stucture was used in the web system's interface and served as the foundation to organize content logically. It made it easier for users to navigate through the platform. Semantic HTML elements helped in conveying the purpose of different parts of the interface, improving accessibility for screen readers and serach engines. One enhancement I could think of is by adding more semantic elements such as article for displaying individual scores on the leaderboard. And also a clearer instruction such as ordinal instruction manner.
 
 # CSS
 
