@@ -51,10 +51,7 @@ require_once 'config_file.php';
 
         <div id="results" class="bg-light p-3">
             <ul class="list-unstyled">
-                <li>Answer 1: ______</li>
-                <li>Answer 2: ______</li>
-                <li>Answer 3: ______</li>
-                <li>Answer 4: ______</li>
+                <li>Answer : ______</li>
             </ul>
         </div>
 
@@ -87,10 +84,7 @@ require_once 'config_file.php';
             </tbody>
         </table>
 
-        <div class="team-controls d-flex justify-content-around my-4">
-            <button id="pass-btn" class="btn btn-primary">Pass</button>
-            <button id="play-btn" class="btn btn-primary">Play</button>
-        </div>
+       
 
         <div id="countdown-timer" class="text-danger text-center" hidden>
             <h3>Get Ready!</h3>
@@ -107,12 +101,14 @@ require_once 'config_file.php';
         <progress id="answer-progress" value="0" max="100" class="w-100 my-4"></progress>
         <button id="reset" onclick="resetGame()">Reset Game</button>
 
-        <audio controls id="game-soundtrack" class="mt-4">
-            <source src="assets/audio/game-music.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+       
+
         <audio controls>
             <source src="assets/buzzer.wav" id="buzzer-sound">
+        </audio> 
+        <audio id="game-soundtrack" controls>
+            <source src="assets/theme.mp3">
+            Your browser does not support the audio element.
         </audio>
     </div>
 

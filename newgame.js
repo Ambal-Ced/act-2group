@@ -7,7 +7,7 @@ let currentTeam = '';
 let stealingTeam = '';
 const roundLimit = 3;
 const maxWrongAnswers = 3;
-let answeredCorrectly = []; // To keep track of correctly guessed answers
+let answeredCorrectly = [];
 let currentQuestion = {};
 let team1Player = '';
 let team2Player = '';
@@ -113,7 +113,6 @@ function startGame() {
         return;
     }
 
-    // Reset the game variables
     currentRound = 1;
     team1Score = 0;
     team2Score = 0;
@@ -121,20 +120,16 @@ function startGame() {
     wrongAnswersInRound = 0;
     answeredCorrectly = [];
 
-    // Proceed to faceOff
     faceOff();
 }
 
 function faceOff() {
-    // Randomly select which team answers first
     currentTeam = Math.random() < 0.5 ? team1Player : team2Player;
     document.getElementById('current-player').textContent = `Current Player: ${currentTeam}`;
 
-    // Display the current question
     currentQuestion = roundsData[currentRound - 1];
     document.getElementById('question').textContent = currentQuestion.question;
 
-    // Handle the first answer submission for faceOff
     document.getElementById('answer-form').addEventListener('submit', function (e) {
         e.preventDefault();
         const userAnswer = document.getElementById('user-answer').value.trim();
@@ -144,10 +139,8 @@ function faceOff() {
 
 function faceOffOutcome(isCorrect) {
     if (isCorrect) {
-        // If correct, proceed to playRounds
         playRounds();
     } else {
-        // If wrong, switch teams
         currentTeam = currentTeam === team1Player ? team2Player : team1Player;
         document.getElementById('current-player').textContent = `Current Player: ${currentTeam}`;
     }
@@ -165,14 +158,11 @@ function playRoundOutcome(isCorrect) {
     if (isCorrect) {
         correctAnswersInRound++;
         if (correctAnswersInRound === 5) {
-            alert('All correct answers were provided, proceed to the next round');
-            proceedToNextRound(); // Move to next round if all answers are guessed
+            proceedToNextRound(); 
         }
     } else {
         wrongAnswersInRound++;
         if (wrongAnswersInRound === maxWrongAnswers) {
-            // 3 wrong answers: other team gets the chance to steal
-            alert('3 wrong answers: other team gets the chance to steal');
             initiateSteal();
         }
     }
@@ -182,15 +172,12 @@ function validateAnswer(userAnswer, callback) {
     const answers = currentQuestion.answers;
 
     if (userAnswer in answers && !answeredCorrectly.includes(userAnswer)) {
-        // Correct answer and not previously answered
         answeredCorrectly.push(userAnswer);
         alert('Correct answer!');
         
-        // Update results list with the new correct answer
         const resultList = document.querySelectorAll('#results li');
         resultList[correctAnswersInRound].textContent = `Answer: ${userAnswer}, Points: ${answers[userAnswer]}`;
         
-        // Add points to the current team
         if (currentTeam === team1Player) {
             team1Score += answers[userAnswer];
             document.getElementById('team1-score').textContent = team1Score;
@@ -199,19 +186,17 @@ function validateAnswer(userAnswer, callback) {
             document.getElementById('team2-score').textContent = team2Score;
         }
 
-        callback(true); // Notify the playRounds/faceOffOutcome that the answer was correct
+        callback(true); 
     } else {
         alert('Wrong answer!');
-        callback(false); // Notify the playRounds/faceOffOutcome that the answer was incorrect
+        callback(false); 
     }
 }
 
 function initiateSteal() {
-    // The stealing team gets a chance to answer
     stealingTeam = currentTeam === team1Player ? team2Player : team1Player;
     document.getElementById('current-player').textContent = `Steal Attempt by: ${stealingTeam}`;
 
-    // Handle the steal answer submission
     document.getElementById('answer-form').addEventListener('submit', function (e) {
         e.preventDefault();
         const userAnswer = document.getElementById('user-answer').value.trim();
@@ -223,10 +208,8 @@ function validateAnswerForSteal(userAnswer) {
     const answers = currentQuestion.answers;
 
     if (userAnswer in answers && !answeredCorrectly.includes(userAnswer)) {
-        // Stealing team answered correctly
         alert('Correct answer! Stealing team gets the points!');
         
-        // Add points to the stealing team
         if (stealingTeam === team1Player) {
             team1Score += answers[userAnswer];
             document.getElementById('team1-score').textContent = team1Score;
@@ -238,24 +221,19 @@ function validateAnswerForSteal(userAnswer) {
         alert('Wrong answer! The round ends.');
     }
 
-    // Proceed to the next round regardless of the steal outcome
     proceedToNextRound();
 }
 
 function proceedToNextRound() {
-    // Reset round-specific variables
     correctAnswersInRound = 0;
     wrongAnswersInRound = 0;
     answeredCorrectly = [];
 
-    // Move to the next round
     currentRound++;
 
     if (currentRound > roundLimit) {
-        // Proceed to Final Round if the round limit (3) is exceeded
         FinalRound();
     } else {
-        // Continue with the normal faceOff if it's still under roundLimit
         faceOff();
     }
 }
@@ -279,7 +257,6 @@ function FinalRound() {
             let finalQuestion = finalRoundQuestions[questionIndex];
             document.getElementById('question').textContent = finalQuestion;
 
-            // Handle answer submission for Final Round
             document.getElementById('answer-form').addEventListener('submit', function (e) {
                 e.preventDefault();
                 const userAnswer = document.getElementById('user-answer').value.trim();
@@ -292,21 +269,18 @@ function FinalRound() {
                     }
 
                     questionIndex++;
-                    askNextFinalQuestion(); // Proceed to the next question
+                    askNextFinalQuestion(); 
                 });
-            }, { once: true }); // Ensure only one event listener is attached for each question
+            }, { once: true }); 
         } else {
-            // After all final round questions are asked, proceed to endGame
             endGame(finalRoundPoints);
         }
     }
 
-    // Start asking the final round questions
     askNextFinalQuestion();
 }
 
 function validateFinalAnswer(userAnswer, callback) {
-    // This can be adjusted to have specific final round answers
     const finalRoundAnswers = {
         "Final question 1?": { "Answer1": 10 },
         "Final question 2?": { "Answer2": 20 },
@@ -319,14 +293,13 @@ function validateFinalAnswer(userAnswer, callback) {
     const answerData = finalRoundAnswers[currentQuestion];
 
     if (userAnswer in answerData) {
-        callback(true, answerData[userAnswer]); // Correct answer, return points
+        callback(true, answerData[userAnswer]);
     } else {
-        callback(false, 0); // Incorrect answer, no points
+        callback(false, 0);
     }
 }
 
 function endGame(finalRoundPoints) {
-    // Add final round points to the current team's score
     if (currentTeam === team1Player) {
         team1Score += finalRoundPoints;
         document.getElementById('team1-score').textContent = team1Score;
@@ -335,7 +308,6 @@ function endGame(finalRoundPoints) {
         document.getElementById('team2-score').textContent = team2Score;
     }
 
-    // Compare total scores to determine the winner
     let winner = '';
     if (team1Score > team2Score) {
         winner = team1Player;
@@ -345,10 +317,8 @@ function endGame(finalRoundPoints) {
         winner = 'It\'s a tie!';
     }
 
-    // Announce the winner
     alert(`Game Over! The winner is: ${winner}`);
 
-    // Reset the game
     resetGame();
 }
 
@@ -367,4 +337,11 @@ function resetGame() {
     document.getElementById('results').innerHTML = '';
     document.getElementById('current-player').textContent = 'Game reset. Enter team names to start a new game!';
 }
+
+window.addEventListener('load', function() {
+    const soundtrack = document.getElementById('game-soundtrack');
+    soundtrack.play().catch((error) => {
+        console.error('Playback failed:', error);
+    });
+});
 
